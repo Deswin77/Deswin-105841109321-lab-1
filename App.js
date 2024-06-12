@@ -1,16 +1,18 @@
 import { StyleSheet, Text, View, Image } from "react-native";
 import React from "react";
+import ButtonCustom from "./component/button/button";
+
 
 const App = () => {
   return (
     <View style={{ flex: 1 }}>
       <View style={{
-        backgroundColor: "white",
-        top:0,
-        bottom:0,
-        height:60,
-        justifyContent:'center'
-        }}>
+          backgroundColor: "white",
+          top:0,
+          bottom:0,
+          height:60,
+          justifyContent:'center'
+      }}>
         <Text style={{
           fontSize: 30,
           textAlign: "center",
@@ -19,7 +21,8 @@ const App = () => {
         }}>
           WELCOME
         </Text>
-        </View>
+      </View>
+      
         <View style={{
           flex: 1,
           alignItems: "center",
@@ -32,45 +35,13 @@ const App = () => {
             resizeMode: 'contain',
           }} />
         </View>
-    <View style={{ flex: 1}}>
-      <View style={{ flexDirection: "row", 
-      flex: 1,
-      alignItems: "flex-start", //baris
-      justifyContent: "center", //kolom
-      marginLeft: 8, //jarak dari kiri
-      marginRight: 8, //jarak dari kanan
-      marginBottom: 40, //jarak dari bawah
-    }}>
-      <View style={{
-        backgroundColor: "red", width: 180, height: 80,
-        justifyContent: "center",
-        borderRadius: 10,
-        
-      }}>
-        <Text style={{
-          fontSize: 30, color: "white",
-          textAlign: "center",
-          fontWeight: "bold",
-        }}>
-          Email/Telepon
-        </Text>
-      </View>
-      <View style={{
-        backgroundColor: "blue", width: 180, height: 80,
-        justifyContent: "center",
-        borderRadius: 10,
-        marginLeft: 8,
-      }}>
-         <Text style={{
-          fontSize: 30, color: "white",
-          textAlign: "center",
-          fontWeight: "bold",
-        }}>
-          Password
-        </Text>
-      </View>
-    </View>
-    <Text style={{
+    <View style={{ flex: 1, flexDirection: 'row'}}>
+      <ButtonCustom text="Email/Telepon" color="black" />
+      <ButtonCustom text="Password" color="black" />
+  </View>
+
+  <View>
+      <Text style={{
           fontSize: 30,
           textAlign: "center",
           fontWeight: "bold",
@@ -80,7 +51,7 @@ const App = () => {
         }}>
           Login
         </Text>
-  </View>
+    </View>
   </View>
       )
     }
