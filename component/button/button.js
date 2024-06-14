@@ -26,6 +26,7 @@ const ButtonCustom = ({color, text}) => {
               </Text>
             </View>
         </View>
+        
     )
 }
 
