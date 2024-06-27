@@ -1,31 +1,51 @@
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image } from 'react-native';
 import React, { useState } from 'react';
 
-const TextInputCustom = ({ name, color, value, onChangeText }) => (
-  <TextInput
-    placeholder={name}
-    style={[styles.customTextInput, { color: color }]}
-    value={value}
-    onChangeText={onChangeText}
-  />
+const TextInputCustom = ({ name, color, value, onChangeText, errorMessage }) => (
+  <>
+    <TextInput
+      placeholder={name}
+      style={[styles.customTextInput, { color: color, borderColor: errorMessage ? 'red' : 'gray' }]}
+      value={value}
+      onChangeText={onChangeText}
+    />
+    {errorMessage ? <Text style={styles.errorText}>{errorMessage}</Text> : null}
+  </>
 );
 
 const App = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isForgotPasswordVisible, setIsForgotPasswordVisible] = useState(false);
+  const [emailError, setEmailError] = useState('');
 
   const handleForgotPassword = () => {
     setIsForgotPasswordVisible(true);
   };
 
   const handleSendEmail = () => {
-    // Tambahkan logika untuk mengirim email di sini
+    if (!validateEmail(email)) {
+      setEmailError('Not a valid email address. Should be your@email.com');
+    } else {
+      setEmailError('');
+  
+    }
+  };
+
+  const validateEmail = (email) => {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
   };
 
   const handleBackPress = () => {
     setIsForgotPasswordVisible(false);
+    setEmailError('');
     setEmail('');
+  };
+
+  const handleNavigateToSignUp = () => {
+
+    console.log("Navigate to Sign Up");
   };
 
   return (
@@ -36,14 +56,23 @@ const App = () => {
             <Text style={styles.backButtonText}>&larr;</Text>
           </TouchableOpacity>
           <Text style={styles.title}>Forgot Password</Text>
-          <TextInputCustom name="Email" color="black" value={email} onChangeText={setEmail} />
+          <Text style={styles.description}>
+            Please, enter your email address. You will receive a link to create a new password via email.
+          </Text>
+          <TextInputCustom
+            name="Email"
+            color="black"
+            value={email}
+            onChangeText={setEmail}
+            errorMessage={emailError}
+          />
           <TouchableOpacity style={styles.button} onPress={handleSendEmail}>
             <Text style={styles.buttonText}>SEND</Text>
           </TouchableOpacity>
         </>
       ) : (
         <>
-          <TouchableOpacity style={styles.backButton} onPress={handleBackPress}>
+          <TouchableOpacity style={styles.backButton} onPress={handleNavigateToSignUp}>
             <Text style={styles.backButtonText}>&larr;</Text>
           </TouchableOpacity>
           <Text style={styles.title}>Login</Text>
@@ -54,7 +83,7 @@ const App = () => {
             <Text style={styles.arrow}>&rarr;</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button}>
-            <Text style={styles.buttonText}>LOGIN</Text>
+            <Text style={styles.buttonText}>SEND</Text>
           </TouchableOpacity>
           <Text style={styles.loginText}>Or login with social account</Text>
           <View style={styles.socialButtons}>
@@ -83,12 +112,13 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 25,
+    padding: 20,
   },
   backButton: {
     position: 'absolute',
-    top: 50,
-    left: 25,
+    top: 40,
+    left: 20,
+    zIndex: 1,
   },
   backButtonText: {
     fontSize: 40,
@@ -98,16 +128,27 @@ const styles = StyleSheet.create({
     fontSize: 25,
     fontWeight: 'bold',
     alignSelf: 'flex-start',
-    marginBottom: 80,
+    marginBottom: 60,
+  },
+  description: {
+    fontSize: 16,
+    color: 'black',
+    marginBottom: 20,
+    textAlign: 'center',
   },
   customTextInput: {
     height: 40,
     width: 300,
-    borderColor: 'black',
     borderWidth: 1,
     borderRadius: 10,
     marginBottom: 10,
     paddingLeft: 10,
+  },
+  errorText: {
+    fontSize: 15,
+    color: 'red',
+    alignSelf: 'flex-start',
+    marginBottom: 10,
   },
   forgotContainer: {
     alignSelf: 'flex-end',
@@ -116,12 +157,12 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
   forgotText: {
-    fontSize: 14,
+    fontSize: 15,
     color: 'black',
     lineHeight: 15,
   },
   arrow: {
-    fontSize: 20,
+    fontSize: 30,
     color: 'red',
     lineHeight: 20,
   },
@@ -131,11 +172,11 @@ const styles = StyleSheet.create({
     backgroundColor: 'red',
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 30,
-    marginVertical: 15,
+    borderRadius: 25,
+    marginVertical: 10,
   },
   buttonText: {
-    fontSize: 15,
+    fontSize: 20,
     color: 'white',
     textAlign: 'center',
     fontWeight: 'bold',
@@ -144,7 +185,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: 'black',
     marginTop: 100,
-    marginVertical: 15,
+    marginVertical: 10,
   },
   socialButtons: {
     flexDirection: 'row',
