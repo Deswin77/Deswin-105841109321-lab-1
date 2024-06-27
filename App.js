@@ -18,9 +18,14 @@ const App = () => {
   const handleForgotPassword = () => {
     setIsForgotPasswordVisible(true);
   };
+
   const handleSendEmail = () => {
+    // Tambahkan logika untuk mengirim email di sini
   };
-  const handleBackPress = () => { 
+
+  const handleBackPress = () => {
+    setIsForgotPasswordVisible(false);
+    setEmail('');
   };
 
   return (
@@ -41,7 +46,7 @@ const App = () => {
           <TouchableOpacity style={styles.backButton} onPress={handleBackPress}>
             <Text style={styles.backButtonText}>&larr;</Text>
           </TouchableOpacity>
-          <Text style={styles.title}>Sign Up</Text>
+          <Text style={styles.title}>Login</Text>
           <TextInputCustom name="Email" color="black" value={email} onChangeText={setEmail} />
           <TextInputCustom name="Password" color="red" value={password} onChangeText={setPassword} />
           <TouchableOpacity style={styles.forgotContainer} onPress={handleForgotPassword}>
