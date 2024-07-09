@@ -1,6 +1,6 @@
-// * Sign Up
+// * Login
 
-import { StyleSheet, Text, View, TextInput, Image } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Image, TouchableOpacity} from 'react-native';
 import React from 'react';
 import { useFonts } from 'expo-font';
 
@@ -45,14 +45,14 @@ const ButtonCustom = ({ color, text}) => {
   )
 }
 
-const SignUp = () => {
-  const [fontLoaded] = useFonts ({
-    'MetroBold' : require ('./assets/fonts/Metropolis-Bold.otf'),
-    'MetroSemiBold' : require ('./assets/fonts/Metropolis-SemiBold.otf'),
-    'MetroBlack' : require ('./assets/fonts/Metropolis-Black.otf'),
-    'MetroMedium' : require ('./assets/fonts/Metropolis-Medium.otf'),
-    'MetroLight' : require ('./assets/fonts/Metropolis-Light.otf'),
-  })
+const LoginPage = ({navigation}) => {
+  // const [fontLoaded] = useFonts ({
+  //   'MetroBold' : require ('./assets/fonts/Metropolis-Bold.otf'),
+  //   'MetroSemiBold' : require ('./assets/fonts/Metropolis-SemiBold.otf'),
+  //   'MetroBlack' : require ('./assets/fonts/Metropolis-Black.otf'),
+  //   'MetroMedium' : require ('./assets/fonts/Metropolis-Medium.otf'),
+  //   'MetroLight' : require ('./assets/fonts/Metropolis-Light.otf'),
+  // })
   return (
     <View style={{
       flex:1,
@@ -72,9 +72,8 @@ const SignUp = () => {
           lineHeight:34,
           color:'#222222',
           fontFamily:'MetroBold',
-          top:80
         }}>
-          Sign Up
+          Login
         </Text>
       </View>
 
@@ -87,32 +86,28 @@ const SignUp = () => {
         fontFamily:'MetroMedium'
 
       }}>
-        <TextInputCustom name='Name' color='#666666' />
         <TextInputCustom name='Email' color='#666666' />
         <TextInputCustom name='Password' color='#666666' />
       </View>
-
-      <View style={{
-        alignSelf:'flex-end',
-        right:17,
-        top:10,
-        fontFamily:'MetroMedium'
-      }}>
+      
+      <TouchableOpacity onPress={() => navigation.navigate ('ForgotPasswordPage')} style= {{
+          flex :1, alignItems:'flex-end', right:20
+        }}>
         <Text style={{
           color:'#222222'
         }}>
-          Already have an account?
+          Forgot Password?
         </Text>
-      </View>
-
+      </TouchableOpacity>
+      
       <View style={{
         flex:1,
         justifyContent:'flex-end',
         alignItems:'center',
-        bottom:100,
+        bottom:110,
         width:'100%'
       }}>
-        <ButtonCustom color='red' text='SIGN UP' />
+        <ButtonCustom color='red' text='LOGIN' />
       </View>
 
       <View style={{
@@ -141,7 +136,7 @@ const SignUp = () => {
           borderRadius:10,
           padding:10
         }}>
-          <Image source={require ('./assets/google.png')} style={{
+          <Image source={require ('../assets/google.png')} style={{
             height:30,
             width:50,
             resizeMode:'contain'
@@ -153,7 +148,7 @@ const SignUp = () => {
           borderRadius:10,
           padding:10
         }}>
-          <Image source={require ('./assets/fb.png')} style={{
+          <Image source={require ('../assets/fb.png')} style={{
             height:30,
             width:50,
             resizeMode:'contain'
@@ -164,4 +159,4 @@ const SignUp = () => {
   )
 }
 
-export default SignUp
+export default LoginPage

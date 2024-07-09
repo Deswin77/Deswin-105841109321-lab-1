@@ -45,14 +45,14 @@ const ButtonCustom = ({ color, text}) => {
   )
 }
 
-const ForgotPassword = () => {
-  const [fontLoaded] = useFonts ({
-    'MetroBold' : require ('./assets/fonts/Metropolis-Bold.otf'),
-    'MetroSemiBold' : require ('./assets/fonts/Metropolis-SemiBold.otf'),
-    'MetroBlack' : require ('./assets/fonts/Metropolis-Black.otf'),
-    'MetroMedium' : require ('./assets/fonts/Metropolis-Medium.otf'),
-    'MetroLight' : require ('./assets/fonts/Metropolis-Light.otf'),
-  })
+const ForgotPasswordPage = () => {
+//   const [fontLoaded] = useFonts ({
+//     'MetroBold' : require ('./assets/fonts/Metropolis-Bold.otf'),
+//     'MetroSemiBold' : require ('./assets/fonts/Metropolis-SemiBold.otf'),
+//     'MetroBlack' : require ('./assets/fonts/Metropolis-Black.otf'),
+//     'MetroMedium' : require ('./assets/fonts/Metropolis-Medium.otf'),
+//     'MetroLight' : require ('./assets/fonts/Metropolis-Light.otf'),
+//   })
   return (
     <View style={{
       flex:1,
@@ -72,7 +72,6 @@ const ForgotPassword = () => {
           lineHeight:34,
           color:'#222222',
           fontFamily:'MetroBold',
-          top:80
         }}>
           Forgot Password
         </Text>
@@ -104,7 +103,7 @@ const ForgotPassword = () => {
         flex:1,
         justifyContent:'flex-end',
         alignItems:'center',
-        bottom:210,
+        bottom:110,
         width:'100%'
       }}>
         <ButtonCustom color='red' text='SEND' />
@@ -113,4 +112,4 @@ const ForgotPassword = () => {
   )
 }
 
-export default ForgotPassword
+export default ForgotPasswordPage
