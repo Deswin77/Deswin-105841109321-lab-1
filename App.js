@@ -477,24 +477,123 @@
 
 // In App.js in a new project
 
+
+
+
+// import * as React from 'react';
+// import { View, Text, Button} from 'react-native';
+// import { NavigationContainer } from '@react-navigation/native';
+// import { createNativeStackNavigator } from '@react-navigation/native-stack';
+// import SignUpPage from './component/SignUpPage';
+// import LoginPage from './component/LoginPage';
+// import ForgotPasswordPage from './component/ForgotPasswordPage';
+
+
+// const Stack = createNativeStackNavigator();
+
+// function App() {
+//   return (
+//     <NavigationContainer>
+//       <Stack.Navigator initialRouteName ="SignUpPage">
+//         <Stack.Screen name="SignUpPage" component={SignUpPage} />
+//         <Stack.Screen name="LoginPage" component={LoginPage} />
+//         <Stack.Screen name="ForgotPasswordPage" component={ForgotPasswordPage} />
+//       </Stack.Navigator>
+//     </NavigationContainer>
+//   );
+// }
+
+// export default App;
+
 import * as React from 'react';
-import { View, Text, Button} from 'react-native';
+import { View, Text, Button, Image, TouchableOpacity, TouchableOpacityBase } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import SignUpPage from './component/SignUpPage';
 import LoginPage from './component/LoginPage';
 import ForgotPasswordPage from './component/ForgotPasswordPage';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import HomeAktif from './assets/icon/homeAktif.png';
+import HomeInaktif from './assets/icon/home.png';
+import Shop from './assets/icon/shopAktif.png'
+import ShopInaktif from './assets/icon/shop.png'
 
+const Tab = createBottomTabNavigator();
+function MyTabs() {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{
+          headerShown: false, tabBarIcon: ({ focused }) => (
+            <Image
+              source={focused ? HomeAktif : HomeInaktif}
+              style={{ width: 35, height: 35 }}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="SignUpPage"
+        component={SignUpPage}
+        options={{
+          headerShown: false, tabBarIcon: ({ focused }) => (
+            <Image
+              source={focused ? Shop : ShopInaktif}
+              style={{ width: 35, height: 35 }}
+            />
+          ),
+        }}
+      />
+          <Tab.Screen
+        name="LoginPage"
+        component={LoginPage}
+        options={{
+          headerShown: false, tabBarIcon: ({ focused }) => (
+            <Image
+              source={focused ? Shop : ShopInaktif}
+              style={{ width: 35, height: 35 }}
+            />
+          ),
+        }}
+      />
+          <Tab.Screen
+        name="ForgotPasswordPage"
+        component={ForgotPasswordPage}
+        options={{
+          headerShown: false, tabBarIcon: ({ focused }) => (
+            <Image
+              source={focused ? Shop : ShopInaktif}
+              style={{ width: 35, height: 35 }}
+            />
+          ),
+        }}
+      />
+    </Tab.Navigator>
+  );
+}
+
+function HomeScreen({ navigation }) {
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text>Home Screen</Text>
+      <Button
+        title="Go to Login"
+        onPress={() => navigation.navigate('Login')}
+      />
+    </View>
+  );
+}
 
 const Stack = createNativeStackNavigator();
 
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName ="SignUpPage">
-        <Stack.Screen name="SignUpPage" component={SignUpPage} />
-        <Stack.Screen name="LoginPage" component={LoginPage} />
-        <Stack.Screen name="ForgotPasswordPage" component={ForgotPasswordPage} />
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={MyTabs} />
+        <Stack.Screen name="Login" component={LoginPage} />
       </Stack.Navigator>
     </NavigationContainer>
   );
