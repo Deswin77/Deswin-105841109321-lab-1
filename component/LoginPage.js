@@ -100,6 +100,7 @@ const LoginPage = ({navigation}) => {
         </Text>
       </TouchableOpacity>
       
+      <TouchableOpacity onPress={() => navigation.navigate('MyTabs')}>
       <View style={{
         flex:1,
         justifyContent:'flex-end',
@@ -109,6 +110,7 @@ const LoginPage = ({navigation}) => {
       }}>
         <ButtonCustom color='red' text='LOGIN' />
       </View>
+        </TouchableOpacity>
 
       <View style={{
         alignSelf:'center'

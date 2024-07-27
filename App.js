@@ -591,8 +591,8 @@ const Stack = createNativeStackNavigator();
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Home" component={MyTabs} />
+      <Stack.Navigator initialRouteName='Login'>
+        <Stack.Screen name="MyTabs" component={MyTabs} />
         <Stack.Screen name="Login" component={LoginPage} />
       </Stack.Navigator>
     </NavigationContainer>
