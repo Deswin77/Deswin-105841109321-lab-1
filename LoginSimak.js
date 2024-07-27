@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, TextInput } from 'react-native'
 import React, { useState } from 'react'
 import { Button } from 'react-native-web'
-const App = () => {
+const LoginSimak = () => {
   const [formLogin, setForm] = useState({
     email: '',
     password: ''
@@ -33,4 +33,4 @@ const App = () => {
     </View>
   )
 }
-export default App
+export default LoginSimak
