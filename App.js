@@ -505,98 +505,137 @@
 
 // export default App;
 
-import * as React from 'react';
-import { View, Text, Button, Image, TouchableOpacity, TouchableOpacityBase } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import SignUpPage from './component/SignUpPage';
-import LoginPage from './component/LoginPage';
-import ForgotPasswordPage from './component/ForgotPasswordPage';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import HomeAktif from './assets/icon/homeAktif.png';
-import HomeInaktif from './assets/icon/home.png';
-import Shop from './assets/icon/shopAktif.png'
-import ShopInaktif from './assets/icon/shop.png'
+// import * as React from 'react';
+// import { View, Text, Button, Image, TouchableOpacity, TouchableOpacityBase } from 'react-native';
+// import { NavigationContainer } from '@react-navigation/native';
+// import { createNativeStackNavigator } from '@react-navigation/native-stack';
+// import SignUpPage from './component/SignUpPage';
+// import LoginPage from './component/LoginPage';
+// import ForgotPasswordPage from './component/ForgotPasswordPage';
+// import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+// import HomeAktif from './assets/icon/homeAktif.png';
+// import HomeInaktif from './assets/icon/home.png';
+// import Shop from './assets/icon/shopAktif.png'
+// import ShopInaktif from './assets/icon/shop.png'
 
-const Tab = createBottomTabNavigator();
-function MyTabs() {
-  return (
-    <Tab.Navigator>
-      <Tab.Screen
-        name="Home"
-        component={HomeScreen}
-        options={{
-          headerShown: false, tabBarIcon: ({ focused }) => (
-            <Image
-              source={focused ? HomeAktif : HomeInaktif}
-              style={{ width: 35, height: 35 }}
-            />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="SignUpPage"
-        component={SignUpPage}
-        options={{
-          headerShown: false, tabBarIcon: ({ focused }) => (
-            <Image
-              source={focused ? Shop : ShopInaktif}
-              style={{ width: 35, height: 35 }}
-            />
-          ),
-        }}
-      />
-          <Tab.Screen
-        name="LoginPage"
-        component={LoginPage}
-        options={{
-          headerShown: false, tabBarIcon: ({ focused }) => (
-            <Image
-              source={focused ? Shop : ShopInaktif}
-              style={{ width: 35, height: 35 }}
-            />
-          ),
-        }}
-      />
-          <Tab.Screen
-        name="ForgotPasswordPage"
-        component={ForgotPasswordPage}
-        options={{
-          headerShown: false, tabBarIcon: ({ focused }) => (
-            <Image
-              source={focused ? Shop : ShopInaktif}
-              style={{ width: 35, height: 35 }}
-            />
-          ),
-        }}
-      />
-    </Tab.Navigator>
-  );
-}
+// const Tab = createBottomTabNavigator();
+// function MyTabs() {
+//   return (
+//     <Tab.Navigator>
+//       <Tab.Screen
+//         name="Home"
+//         component={HomeScreen}
+//         options={{
+//           headerShown: false, tabBarIcon: ({ focused }) => (
+//             <Image
+//               source={focused ? HomeAktif : HomeInaktif}
+//               style={{ width: 35, height: 35 }}
+//             />
+//           ),
+//         }}
+//       />
+//       <Tab.Screen
+//         name="SignUpPage"
+//         component={SignUpPage}
+//         options={{
+//           headerShown: false, tabBarIcon: ({ focused }) => (
+//             <Image
+//               source={focused ? Shop : ShopInaktif}
+//               style={{ width: 35, height: 35 }}
+//             />
+//           ),
+//         }}
+//       />
+//           <Tab.Screen
+//         name="LoginPage"
+//         component={LoginPage}
+//         options={{
+//           headerShown: false, tabBarIcon: ({ focused }) => (
+//             <Image
+//               source={focused ? Shop : ShopInaktif}
+//               style={{ width: 35, height: 35 }}
+//             />
+//           ),
+//         }}
+//       />
+//           <Tab.Screen
+//         name="ForgotPasswordPage"
+//         component={ForgotPasswordPage}
+//         options={{
+//           headerShown: false, tabBarIcon: ({ focused }) => (
+//             <Image
+//               source={focused ? Shop : ShopInaktif}
+//               style={{ width: 35, height: 35 }}
+//             />
+//           ),
+//         }}
+//       />
+//     </Tab.Navigator>
+//   );
+// }
 
-function HomeScreen({ navigation }) {
+// function HomeScreen({ navigation }) {
+//   return (
+//     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+//       <Text>Home Screen</Text>
+//       <Button
+//         title="Go to Login"
+//         onPress={() => navigation.navigate('Login')}
+//       />
+//     </View>
+//   );
+// }
+
+// const Stack = createNativeStackNavigator();
+
+// function App() {
+//   return (
+//     <NavigationContainer>
+//       <Stack.Navigator initialRouteName='Login'>
+//         <Stack.Screen name="MyTabs" component={MyTabs} />
+//         <Stack.Screen name="Login" component={LoginPage} />
+//       </Stack.Navigator>
+//     </NavigationContainer>
+//   );
+// }
+
+// export default App;
+
+
+
+import { StyleSheet, Text, View, TextInput } from 'react-native'
+import React, { useState } from 'react'
+import { Button } from 'react-native-web'
+const App = () => {
+  const [formLogin, setForm] = useState({
+    email: '',
+    password: ''
+  })
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Home Screen</Text>
-      <Button
-        title="Go to Login"
-        onPress={() => navigation.navigate('Login')}
-      />
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text>Form Login</Text>
+      <View>
+        <Text>Email</Text>
+        <TextInput
+          style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
+          onChangeText={(hasil) => setForm({ ...formLogin, email: hasil })}
+          value={formLogin.email}
+        />
+        <Text>Password</Text>
+        <TextInput
+          style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
+          onChangeText={(text) => setForm({ ...formLogin, password: text })}
+          value={formLogin.password}
+        />
+        <View style={{ marginTop: 10 }}>
+          <Button title="Login" onPress={() => alert('Login')} />
+        </View>
+        <View>
+          <Text>Email: {formLogin.email}</Text>
+          <Text>Password: {formLogin.password}</Text>
+        </View>
+      </View>
     </View>
-  );
+  )
 }
-
-const Stack = createNativeStackNavigator();
-
-function App() {
-  return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName='Login'>
-        <Stack.Screen name="MyTabs" component={MyTabs} />
-        <Stack.Screen name="Login" component={LoginPage} />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
-}
-
-export default App;
+export default App
