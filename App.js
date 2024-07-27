@@ -602,7 +602,6 @@
 // export default App;
 
 
-
 import { StyleSheet, Text, View, ActivityIndicator, ScrollView } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
